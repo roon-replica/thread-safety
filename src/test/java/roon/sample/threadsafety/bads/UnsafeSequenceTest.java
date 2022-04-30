@@ -19,7 +19,7 @@ class UnsafeSequenceTest {
 
     @Test
     public void test_not_thread_safe() throws ExecutionException, InterruptedException {
-        calc(() -> unsafeSequence.getNext());
+        calc(() -> unsafeSequence.getNext(), 10000);
 
         int expectedNext = 10000;
         int actualNext = unsafeSequence.getValue();
@@ -30,7 +30,7 @@ class UnsafeSequenceTest {
 
     @Test
     public void test_thread_safe_synchronized() throws ExecutionException, InterruptedException {
-        calc(() -> unsafeSequence.getNextSynchronized());
+        calc(() -> unsafeSequence.getNextSynchronized(), 10000);
 
         int expectedNext = 10000;
         int actualNext = unsafeSequence.getValue();
@@ -43,11 +43,11 @@ class UnsafeSequenceTest {
     // Supplier로 함수를 파라미터로 넘겨줬음
     // 근데 전달받은 supplier를 어케 써야할지 조금 헷갈렸었음.
     // input, output만 생각했다면 쉽게 파악했을텐데..
-    public void calc(Supplier<Integer> supplier) throws InterruptedException, ExecutionException {
+    public void calc(Supplier<Integer> supplier, int count) throws InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         unsafeSequence.setValue(0);
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < count; i++) {
             executorService.submit(supplier::get);
         }
 
