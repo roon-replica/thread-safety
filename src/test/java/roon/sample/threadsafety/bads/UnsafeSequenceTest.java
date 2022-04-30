@@ -19,9 +19,13 @@ class UnsafeSequenceTest {
 
     @Test
     public void test_not_thread_safe() throws ExecutionException, InterruptedException {
-        calc(() -> unsafeSequence.getNext(), 10000);
+        int COUNT = 10000;
+        long start = System.currentTimeMillis();
+        calc(() -> unsafeSequence.getNext(), COUNT);
+        long end = System.currentTimeMillis();
 
-        int expectedNext = 10000;
+        System.out.println("processing time(ms) = " + (end - start));
+        int expectedNext = COUNT;
         int actualNext = unsafeSequence.getValue();
 
         System.out.println(actualNext + " " + expectedNext);
@@ -30,9 +34,14 @@ class UnsafeSequenceTest {
 
     @Test
     public void test_thread_safe_synchronized() throws ExecutionException, InterruptedException {
-        calc(() -> unsafeSequence.getNextSynchronized(), 10000);
+        int COUNT = 10000;
+        long start = System.currentTimeMillis();
+        calc(() -> unsafeSequence.getNextSynchronized(), COUNT);
+        long end = System.currentTimeMillis();
 
-        int expectedNext = 10000;
+        System.out.println("processing time(ms) = " + (end - start));
+
+        int expectedNext = COUNT;
         int actualNext = unsafeSequence.getValue();
 
         System.out.println(actualNext + " " + expectedNext);
