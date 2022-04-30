@@ -1,4 +1,4 @@
-package roon.sample.threadsafety.bads;
+package roon.sample.threadsafety.overview;
 
 import lombok.Getter;
 import lombok.Setter;

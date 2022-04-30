@@ -1,4 +1,4 @@
-package roon.sample.threadsafety.bads;
+package roon.sample.threadsafety.overview;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
