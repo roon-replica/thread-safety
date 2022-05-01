@@ -1,7 +1,6 @@
 답을 찾은 topic들은 topics 디렉토리에 개별 파일로 정리
 
 ### unresolved topics
-- thread safety가 정확히 무엇인지
 - thread를 잘 써서 서버 애플리케이션의 자원 활용도와 throughput을 어떻게 높이는지
 - JVM을 단순하게 구성하는데도 도움을 줄 수 있다는데 무슨 말인지
 - 스레드를 이용해서 비동기적인 일 흐름을 거의 순차적으로 바꿀 수 있다는 게 무슨 말인지
